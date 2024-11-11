@@ -1,11 +1,11 @@
 export abstract class EnvConfigProvider {
-  abstract getDatabaseHost(): string;
+  abstract getDatabaseUri(): string;
   abstract getDatabaseName(): string;
   abstract getDatabaseUser(): string;
   abstract getDatabasePassword(): string;
-  abstract getDatabasePort(): number;
   abstract getServerUrl(): string;
   abstract getServerSecret(): string;
+  abstract getServerPort(): number;
   abstract getPaymentGatewayUrl(): string;
   abstract getPaymentGatewayKey(): string;
 }

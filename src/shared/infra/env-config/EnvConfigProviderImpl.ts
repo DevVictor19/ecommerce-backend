@@ -7,8 +7,8 @@ import { EnvConfigProvider } from 'src/shared/application/providers/EnvConfigPro
 export class EnvConfigProviderImpl implements EnvConfigProvider {
   constructor(private readonly configService: ConfigService) {}
 
-  getDatabaseHost(): string {
-    return this.configService.getOrThrow('DB_HOST');
+  getDatabaseUri(): string {
+    return this.configService.getOrThrow('DB_URI');
   }
 
   getDatabaseName(): string {
@@ -23,16 +23,16 @@ export class EnvConfigProviderImpl implements EnvConfigProvider {
     return this.configService.getOrThrow('DB_PASSWORD');
   }
 
-  getDatabasePort(): number {
-    return this.configService.getOrThrow('DB_PORT');
-  }
-
   getServerUrl(): string {
     return this.configService.getOrThrow('SERVER_URL');
   }
 
   getServerSecret(): string {
     return this.configService.getOrThrow('SERVER_SECRET');
+  }
+
+  getServerPort(): number {
+    return this.configService.getOrThrow('SERVER_PORT');
   }
 
   getPaymentGatewayUrl(): string {
