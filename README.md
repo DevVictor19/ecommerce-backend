@@ -1,99 +1,141 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# API for an e-commerce platform
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Functional Requirements
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+- Ability for users to sign up and log in.
+- Ability to add products to a cart.
+- Ability to remove products from a cart.
+- Ability to view and search for products.
+- Ability for users to checkout and pay for products.
+- Admin panel to add products, set the prices and manage inventory
 
-## Description
+## Non Functional Requirements
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Use asaas as payments gateway
+- Use Next.js for build the frontend
+- Use server-client architecture
+- Use mongodb as database
+- Use NodeJS and NestJS for backend
 
-## Project setup
+## Entities
 
-```bash
-$ npm install
+- Users
+- Products
+- Carts
+- Orders
+
+## Entity–relationship model
+
+<img src="./docs/erd-ecommerce-api.png" alt="ERD" />
+
+## Features
+
+### User
+
+- login user (public)
+- signup user (public)
+
+### Product
+
+- create product (admin)
+- delete product (admin)
+- update product (admin)
+- list products (client)
+- search products (client)
+
+### Cart
+
+- add products to cart (client)
+- clear cart (client)
+- remove product of cart (client)
+- find current user cart (client)
+
+### Order
+
+- create order (client)
+- cancel order (client)
+- list current user orders (client)
+- pay order (client)
+- list orders (admin)
+- search orders (admin)
+
+## Running the project locally
+
+### Requirements
+
+- docker and docker compose
+
+### 1. Setup .env file
+
+Create a file called .env on project's root folder, and put something like this inside:
+
+```
+# Database
+DB_HOST=localhost
+DB_NAME=ecommerce
+DB_USER=admin
+DB_PASSWORD=admin
+DB_PORT=27017
+
+# Server
+SERVER_URL=http://localhost:8080
+SERVER_SECRET=your secret key
+
+# Gateways
+PAYMENT_GW_URL=https://sandbox.asaas.com/api/v3
+PAYMENT_GW_KEY=your asaas key
 ```
 
-## Compile and run the project
+### 2. Starting the services
 
-```bash
-# development
-$ npm run start
+Tu run in production mode just go to the project's root folder and run:
 
-# watch mode
-$ npm run start:dev
+#### Production mode
 
-# production mode
-$ npm run start:prod
+```
+docker compose up -d
 ```
 
-## Run tests
+#### Development mode (you can access the database on host machine)
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```
+docker compose -f docker-compose.dev.yml up -d
 ```
 
-## Deployment
+#### This will start the api on http://localhost:8080 and the database at the specified port on .env.
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+#### The database is empty, and you have to create a user with ADMIN role in the database for creating new products.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## Api Endpoints
 
-```bash
-$ npm install -g mau
-$ mau deploy
-```
+You can access the postman documentation on **/docs/ecommerce-api.postman_collection.json** on root folder.
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### Authentication
 
-## Resources
+- POST /auth/signup
+- POST /auth/login
 
-Check out a few resources that may come in handy when working with NestJS:
+### Products
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+- POST /products
+- PUT /products
+- GET /products
+- DELETE /products/:productId
 
-## Support
+### Carts
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- GET /carts/my-cart
+- DELETE /carts/my-cart
+- POST /carts/my-cart/products/:productId?quantity=1
+- DELETE /carts/my-cart/products/:productId?quantity=1
 
-## Stay in touch
+### Orders
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- GET /orders
+- GET /orders/my-orders
+- POST /orders/my-orders
+- DELETE /orders/my-orders/:orderId
 
-## License
+### Payments
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- POST /payments/credit/orders/:orderId
