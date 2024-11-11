@@ -1,0 +1,33 @@
+services:
+  database:
+    container_name: ecommerce-database
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+    networks:
+      - ecommerce
+    volumes:
+      - ecommerce-mongo:/data/db
+
+  backend:
+    container_name: ecommerce-backend
+    depends_on:
+      - database
+    restart: always
+    build:
+      context: .
+    env_file:
+      - .env
+    networks:
+      - ecommerce
+    ports:
+      - 8080:8080
+
+networks:
+  ecommerce:
+    driver: bridge
+
+volumes:
+  ecommerce-mongo:
