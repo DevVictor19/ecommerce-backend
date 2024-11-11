@@ -5,12 +5,15 @@ import {
 } from '@nestjs/platform-fastify';
 
 import { AppModule } from './app.module';
+import { EnvConfigProvider } from './shared/application/providers/EnvConfigProvider';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter(),
   );
-  await app.listen(process.env.PORT ?? 3000);
+
+  const envConfigProvider = app.get(EnvConfigProvider);
+  await app.listen(envConfigProvider.getServerPort());
 }
 bootstrap();
