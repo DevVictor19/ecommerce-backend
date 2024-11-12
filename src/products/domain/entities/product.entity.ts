@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { InvalidEntityOperationException } from 'src/shared/domain/exceptions/invalid-entity-operation.exception';
 
 @Schema({ collection: 'products' })
 export class Product {
@@ -23,16 +22,6 @@ export class Product {
 
   @Prop()
   createdAt: Date;
-
-  subtractFromStock(quantity: number) {
-    if (quantity > this.stockQuantity) {
-      throw new InvalidEntityOperationException(
-        'Quantity to subtract not available on stock',
-      );
-    }
-
-    this.stockQuantity -= quantity;
-  }
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
