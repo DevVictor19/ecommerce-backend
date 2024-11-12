@@ -22,7 +22,7 @@ export class User {
   @Prop({ type: [String] })
   roles: ROLE[];
 
-  @Prop({ name: 'created_at' })
+  @Prop()
   createdAt: Date;
 }
 
