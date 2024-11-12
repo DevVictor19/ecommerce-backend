@@ -10,14 +10,11 @@ export class MongoUserRepository
   extends BaseMongoRepository<User>
   implements UserRepository
 {
-  constructor(
-    @InjectModel(User.name)
-    private readonly userModel: Model<User>,
-  ) {
+  constructor(@InjectModel(User.name) userModel: Model<User>) {
     super(userModel);
   }
 
   findByEmail(email: string): Promise<User | null> {
-    return this.userModel.findOne({ email });
+    return this.model.findOne({ email });
   }
 }
