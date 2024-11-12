@@ -1,6 +1,6 @@
 import { Global, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { EnvConfigProvider } from 'src/shared/application/providers/EnvConfigProvider';
+import { EnvConfigProvider } from 'src/shared/application/providers/env-config-provider.contract';
 
 @Global()
 @Injectable()

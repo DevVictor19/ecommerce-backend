@@ -1,8 +1,8 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { EnvConfigProvider } from 'src/shared/application/providers/EnvConfigProvider';
+import { EnvConfigProvider } from 'src/shared/application/providers/env-config-provider.contract';
 
-import { EnvConfigProviderImpl } from './EnvConfigProviderImpl';
+import { EnvConfigProviderImpl } from './env-config.provider';
 
 @Global()
 @Module({

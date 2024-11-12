@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { EnvConfigProvider } from 'src/shared/application/providers/EnvConfigProvider';
+import { EnvConfigProvider } from 'src/shared/application/providers/env-config-provider.contract';
 
 @Module({
   imports: [
