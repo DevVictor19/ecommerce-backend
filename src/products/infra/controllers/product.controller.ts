@@ -9,6 +9,11 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
+import { AuthenticatedRoute } from 'src/auth/infra/decorators/authenticated-route.decorator';
+import {
+  AdminPermission,
+  ClientPermission,
+} from 'src/auth/infra/decorators/roles.decorator';
 import { CreateProductUseCase } from 'src/products/application/usecases/create-product.usecase';
 import { DeleteProductUseCase } from 'src/products/application/usecases/delete-product.usecase';
 import { FindAllProductsUseCase } from 'src/products/application/usecases/find-all-products.usecase';
@@ -26,6 +31,7 @@ import { UpdateProductDto } from '../dtos/update-product.dto';
 import { ProductMapper } from '../mappers/product.mapper';
 
 @Controller('/products')
+@AuthenticatedRoute()
 export class ProductController {
   constructor(
     private readonly createProductUseCase: CreateProductUseCase,
@@ -36,6 +42,7 @@ export class ProductController {
   ) {}
 
   @Post()
+  @AdminPermission()
   async create(@Body() dto: CreateProductDto) {
     await this.createProductUseCase.execute(
       dto.price,
@@ -47,11 +54,13 @@ export class ProductController {
   }
 
   @Delete(':productId')
+  @AdminPermission()
   async delete(@Param('productId', ParseUUIDPipe) productId: string) {
     await this.deleteProductUseCase.execute(productId);
   }
 
   @Get()
+  @ClientPermission()
   findAll(
     @Query('page') page: number,
     @Query('size') size: number,
@@ -68,6 +77,7 @@ export class ProductController {
   }
 
   @Get(':productId')
+  @ClientPermission()
   findById(
     @Param('productId', ParseUUIDPipe) productId: string,
   ): Promise<ProductDto> {
@@ -77,6 +87,7 @@ export class ProductController {
   }
 
   @Put(':productId')
+  @AdminPermission()
   async update(
     @Param('productId', ParseUUIDPipe) productId: string,
     @Body() dto: UpdateProductDto,
