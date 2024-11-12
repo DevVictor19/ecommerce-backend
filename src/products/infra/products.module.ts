@@ -26,5 +26,6 @@ import { MongoProductRepository } from './repositories/mongo-product.repository'
     UpdateProductUseCase,
   ],
   controllers: [ProductController],
+  exports: [ProductService],
 })
 export class ProductsModule {}
