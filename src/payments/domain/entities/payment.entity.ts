@@ -10,7 +10,7 @@ export class Payment {
   @Prop()
   _id: string;
 
-  @Prop({ unique: true })
+  @Prop()
   transactionCode: string;
 
   @Prop()
