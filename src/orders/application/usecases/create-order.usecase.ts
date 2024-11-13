@@ -33,5 +33,7 @@ export class CreateOrderUseCase {
       this.orderService.create(order),
       this.cartService.delete(cart._id),
     ]);
+
+    return order;
   }
 }

@@ -87,10 +87,10 @@ export class OrderController {
 
   @Post('my-orders')
   @ClientPermission()
-  async createOrder(@Req() req: any) {
+  createOrder(@Req() req: any): Promise<OrderDto> {
     const user: JwtPayload = req.user;
 
-    await this.createOrderUseCase.execute(user.userId);
+    return this.createOrderUseCase.execute(user.userId).then(OrderMapper.toDto);
   }
 
   @Delete('my-orders/:orderId')
