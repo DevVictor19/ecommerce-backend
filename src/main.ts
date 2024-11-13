@@ -23,6 +23,13 @@ async function bootstrap() {
   );
 
   const envConfigProvider = app.get(EnvConfigProvider);
+
+  app.enableCors({
+    origin: envConfigProvider.getServerFrontendUrl(),
+    allowedHeaders: '*',
+    methods: '*',
+  });
+
   await app.listen(envConfigProvider.getServerPort());
 }
 bootstrap();

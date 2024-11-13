@@ -35,6 +35,10 @@ export class EnvConfigProviderImpl implements EnvConfigProvider {
     return this.configService.getOrThrow('SERVER_PORT');
   }
 
+  getServerFrontendUrl(): string {
+    return this.configService.getOrThrow('SERVER_FRONTEND_URL');
+  }
+
   getPaymentGatewayUrl(): string {
     return this.configService.getOrThrow('PAYMENT_GW_URL');
   }
