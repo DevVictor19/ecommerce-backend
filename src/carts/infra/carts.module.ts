@@ -26,5 +26,6 @@ import { MongoCartRepository } from './repositories/mongo-cart.repository';
     SubtractProductFromCartUseCase,
   ],
   controllers: [CartController],
+  exports: [CartService],
 })
 export class CartsModule {}

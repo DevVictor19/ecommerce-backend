@@ -1,0 +1,4 @@
+export enum PAYMENT_METHOD {
+  DEBIT_CARD = 'DEBIT_CARD',
+  CREDIT_CART = 'CREDIT_CARD',
+}
