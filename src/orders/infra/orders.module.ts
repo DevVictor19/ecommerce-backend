@@ -28,5 +28,6 @@ import { MongoOrderRepository } from './repositories/mongo-order.repository';
     FindOrderByIdUseCase,
   ],
   controllers: [OrderController],
+  exports: [OrderService],
 })
 export class OrdersModule {}

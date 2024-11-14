@@ -1,4 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
+import { CartProduct } from 'src/carts/domain/entities/cart-product.entity';
 import { Product } from 'src/products/domain/entities/product.entity';
 import { ProductRepository } from 'src/products/domain/repositories/product.repository';
 import { SortOrder } from 'src/shared/domain/repositories/base-paginated-repository.contract';
@@ -44,5 +49,47 @@ export class ProductService {
 
   async delete(id: string) {
     await this.productRepository.delete(id);
+  }
+
+  async isAllProductsAvailable(products: CartProduct[]) {
+    const promises: Promise<boolean>[] = products.map(async (cartProduct) => {
+      const stockProduct = await this.productRepository.findById(
+        cartProduct._id,
+      );
+
+      if (!stockProduct) return false;
+
+      return stockProduct.stockQuantity >= cartProduct.inCartQuantity;
+    });
+
+    const results = await Promise.all(promises);
+
+    return results.every((v) => v);
+  }
+
+  async subtractProductsFromStock(products: CartProduct[]) {
+    const promises: Promise<void>[] = products.map(async (cartProduct) => {
+      const stockProduct = await this.productRepository.findById(
+        cartProduct._id,
+      );
+
+      if (!stockProduct) {
+        throw new NotFoundException('Product not found');
+      }
+
+      if (stockProduct.stockQuantity < cartProduct.inCartQuantity) {
+        throw new BadRequestException(
+          'Insufficient quantity of product in stock"',
+        );
+      }
+
+      stockProduct.stockQuantity -= cartProduct.inCartQuantity;
+
+      await this.productRepository.update(stockProduct._id, {
+        stockQuantity: stockProduct.stockQuantity,
+      });
+    });
+
+    await Promise.all(promises);
   }
 }
