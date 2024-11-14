@@ -38,5 +38,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build Next.js app
+      - name: Build NestJS
         run: npm run build
