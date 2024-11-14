@@ -45,7 +45,7 @@ export class OrderController {
   findAllOrders(
     @Query('page') page: number,
     @Query('size') size: number,
-    @Query('sort') sort: SortOrder = 'ASC',
+    @Query('sort') sort: SortOrder = 'DESC',
     @Query('sortBy') sortBy: keyof Order = 'createdAt',
     @Query('status') status?: keyof typeof ORDER_STATUS,
   ): Promise<Page<OrderDto>> {
@@ -71,7 +71,7 @@ export class OrderController {
     @Req() req: any,
     @Query('page') page: number,
     @Query('size') size: number,
-    @Query('sort') sort: SortOrder = 'ASC',
+    @Query('sort') sort: SortOrder = 'DESC',
     @Query('sortBy') sortBy: keyof Order = 'createdAt',
     @Query('status') status?: keyof typeof ORDER_STATUS,
   ): Promise<Page<OrderDto>> {

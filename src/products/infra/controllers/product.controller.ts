@@ -64,7 +64,7 @@ export class ProductController {
   findAll(
     @Query('page') page: number,
     @Query('size') size: number,
-    @Query('sort') sort: SortOrder = 'ASC',
+    @Query('sort') sort: SortOrder = 'DESC',
     @Query('sortBy') sortBy: keyof Product = 'createdAt',
     @Query('name') name: string,
   ): Promise<Page<ProductDto>> {
