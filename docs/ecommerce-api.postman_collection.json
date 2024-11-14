@@ -112,6 +112,33 @@
 				},
 				{
 					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extrair o token da resposta JSON",
+									"const responseJson = pm.response.json();",
+									"const token = responseJson.token; // Pega o valor do campo \"token\"",
+									"",
+									"// Salva o token em uma variável de ambiente chamada \"JWT\"",
+									"pm.collectionVariables.set(\"JWT\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -228,7 +255,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJzdWIiOiIyMGRlN2NjYy1lMjM3LTQ0YzAtOGFjZi00ZGQwMmNlYjA4MjAiLCJleHAiOjE3Mjk2NDk3ODd9.Q7r7TntHQWDvUDHtD_YouBFx6PmnaGwCVR34YeiO8HU",
+									"value": "{{JWT}}",
 									"type": "string"
 								}
 							]
@@ -237,7 +264,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"price\": 10990,\n    \"name\": \"Smart LED Light Bulb\",\n    \"description\": \"Color-changing LED bulb with app control and voice assistant integration.\",\n    \"photoUrl\": \"https://images.pexels.com/photos/1905744/pexels-photo-1905744.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n    \"stockQuantity\": 80\n}\n\n\n\n",
+							"raw": "{\n    \"price\": 5990,\n    \"name\": \"Smart Plug Wi-Fi\",\n    \"description\": \"Wi-Fi-enabled smart plug that lets you control your devices remotely and set\",\n    \"photoUrl\": \"https://images.pexels.com/photos/3943727/pexels-photo-3943727.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n    \"stockQuantity\": 200\n}\n\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -337,7 +364,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJzdWIiOiIyMGRlN2NjYy1lMjM3LTQ0YzAtOGFjZi00ZGQwMmNlYjA4MjAiLCJleHAiOjE3Mjk2NDk3ODd9.Q7r7TntHQWDvUDHtD_YouBFx6PmnaGwCVR34YeiO8HU",
+									"value": "{{JWT}}",
 									"type": "string"
 								}
 							]
@@ -346,7 +373,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"price\": 10990,\n    \"name\": \"Smart LED Light Bulb\",\n    \"description\": \"Color-changing LED bulb with app control and voice assistant integration.\",\n    \"photoUrl\": \"https://images.pexels.com/photos/1905744/pexels-photo-1905744.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n    \"stockQuantity\": 50\n}",
+							"raw": "{\n    \"price\": 10990,\n    \"name\": \"Teste\",\n    \"description\": \"Color-changing LED bulb with app control and voice assistant integration.\",\n    \"photoUrl\": \"https://images.pexels.com/photos/1905744/pexels-photo-1905744.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n    \"stockQuantity\": 50\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -365,7 +392,7 @@
 							"variable": [
 								{
 									"key": "productId",
-									"value": "6f1b54b3-c146-4bbb-b93b-38ba57f9cd1a"
+									"value": "0093d9a0-fa22-4235-a935-eba8fc37130e"
 								}
 							]
 						}
@@ -460,7 +487,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJzdWIiOiIyMGRlN2NjYy1lMjM3LTQ0YzAtOGFjZi00ZGQwMmNlYjA4MjAiLCJleHAiOjE3Mjk2NDk3ODd9.Q7r7TntHQWDvUDHtD_YouBFx6PmnaGwCVR34YeiO8HU",
+									"value": "{{JWT}}",
 									"type": "string"
 								}
 							]
@@ -583,7 +610,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJzdWIiOiIyMGRlN2NjYy1lMjM3LTQ0YzAtOGFjZi00ZGQwMmNlYjA4MjAiLCJleHAiOjE3Mjk2NDk3ODd9.Q7r7TntHQWDvUDHtD_YouBFx6PmnaGwCVR34YeiO8HU",
+									"value": "{{JWT}}",
 									"type": "string"
 								}
 							]
@@ -616,7 +643,7 @@
 								},
 								{
 									"key": "sortBy",
-									"value": "createdAt",
+									"value": "price",
 									"disabled": true
 								},
 								{
@@ -723,6 +750,127 @@
 							"body": "{\n    \"content\": [\n        {\n            \"id\": \"de6f82a1-ec0e-40b4-86b5-246dc746b27b\",\n            \"price\": 3490,\n            \"name\": \"Wireless Charging Pad\",\n            \"description\": \"Fast wireless charger compatible with Qi-enabled devices.\",\n            \"photoUrl\": \"https://images.pexels.com/photos/11874353/pexels-photo-11874353.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n            \"stockQuantity\": 120,\n            \"createdAt\": \"2024-10-22T18:26:27.062+00:00\"\n        },\n        {\n            \"id\": \"729a4b29-c385-4f3a-ba5b-e3c689d39454\",\n            \"price\": 15990,\n            \"name\": \"Wireless Ergonomic Mouse\",\n            \"description\": \"Ergonomic mouse with adjustable DPI, silent clicks, and rechargeable battery.\",\n            \"photoUrl\": \"https://images.pexels.com/photos/8131358/pexels-photo-8131358.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n            \"stockQuantity\": 95,\n            \"createdAt\": \"2024-10-22T18:25:38.702+00:00\"\n        },\n        {\n            \"id\": \"84a5a5e5-1861-47bd-9b3b-c0e7169f7cfd\",\n            \"price\": 8990,\n            \"name\": \"Wireless Bluetooth Speaker\",\n            \"description\": \"Portable speaker with deep bass, 12-hour battery life, and water resistance.\",\n            \"photoUrl\": \"https://images.pexels.com/photos/4481259/pexels-photo-4481259.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n            \"stockQuantity\": 60,\n            \"createdAt\": \"2024-10-22T18:24:47.827+00:00\"\n        },\n        {\n            \"id\": \"2024e1f7-92aa-4645-bacc-9a96578fae02\",\n            \"price\": 49990,\n            \"name\": \"Wireless Headphones Max\",\n            \"description\": \"Noise-canceling over-ear headphones with immersive sound and long battery life.\",\n            \"photoUrl\": \"https://images.pexels.com/photos/7156884/pexels-photo-7156884.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n            \"stockQuantity\": 120,\n            \"createdAt\": \"2024-10-22T18:18:10.971+00:00\"\n        }\n    ],\n    \"page\": {\n        \"size\": 10,\n        \"number\": 0,\n        \"totalElements\": 4,\n        \"totalPages\": 1\n    }\n}"
 						}
 					]
+				},
+				{
+					"name": "find by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/products/:productId",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"products",
+								":productId"
+							],
+							"variable": [
+								{
+									"key": "productId",
+									"value": "0093d9a0-fa22-4235-a935-eba8fc37130e"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find by id",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/products/:productId",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"products",
+										":productId"
+									],
+									"variable": [
+										{
+											"key": "productId",
+											"value": "6f1b54b3-c146-4bbb-b93b-38ba57f9cd1a"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 29 Oct 2024 17:14:13 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"6f1b54b3-c146-4bbb-b93b-38ba57f9cd1a\",\n    \"price\": 10990,\n    \"name\": \"Smart LED Light Bulb\",\n    \"description\": \"Color-changing LED bulb with app control and voice assistant integration.\",\n    \"photoUrl\": \"https://images.pexels.com/photos/1905744/pexels-photo-1905744.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n    \"stockQuantity\": 50,\n    \"createdAt\": \"2024-10-22T18:26:32.870+00:00\"\n}"
+						}
+					]
 				}
 			]
 		},
@@ -737,7 +885,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJzdWIiOiIyMGRlN2NjYy1lMjM3LTQ0YzAtOGFjZi00ZGQwMmNlYjA4MjAiLCJleHAiOjE3Mjk2NDk3ODd9.Q7r7TntHQWDvUDHtD_YouBFx6PmnaGwCVR34YeiO8HU",
+									"value": "{{JWT}}",
 									"type": "string"
 								}
 							]
@@ -823,6 +971,78 @@
 							],
 							"cookie": [],
 							"body": "{\n    \"id\": \"bf25a842-1331-4ace-8f5b-376f1a7e7d10\",\n    \"products\": [\n        {\n            \"id\": \"de6f82a1-ec0e-40b4-86b5-246dc746b27b\",\n            \"price\": 3490,\n            \"name\": \"Wireless Charging Pad\",\n            \"description\": \"Fast wireless charger compatible with Qi-enabled devices.\",\n            \"photoUrl\": \"https://images.pexels.com/photos/11874353/pexels-photo-11874353.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n            \"inCartQuantity\": 10\n        }\n    ],\n    \"productsQuantity\": 10,\n    \"totalPrice\": 34900,\n    \"createdAt\": \"2024-10-22T18:46:40.894+00:00\"\n}"
+						},
+						{
+							"name": "find my cart",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{api}}/carts/my-cart",
+									"host": [
+										"{{api}}"
+									],
+									"path": [
+										"carts",
+										"my-cart"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 30 Oct 2024 17:37:53 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
 						}
 					]
 				},
@@ -834,7 +1054,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJzdWIiOiIyMGRlN2NjYy1lMjM3LTQ0YzAtOGFjZi00ZGQwMmNlYjA4MjAiLCJleHAiOjE3Mjk2NDk3ODd9.Q7r7TntHQWDvUDHtD_YouBFx6PmnaGwCVR34YeiO8HU",
+									"value": "{{JWT}}",
 									"type": "string"
 								}
 							]
@@ -927,7 +1147,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJzdWIiOiIyMGRlN2NjYy1lMjM3LTQ0YzAtOGFjZi00ZGQwMmNlYjA4MjAiLCJleHAiOjE3Mjk2NDk3ODd9.Q7r7TntHQWDvUDHtD_YouBFx6PmnaGwCVR34YeiO8HU",
+									"value": "{{JWT}}",
 									"type": "string"
 								}
 							]
@@ -954,7 +1174,7 @@
 							"variable": [
 								{
 									"key": "productId",
-									"value": "de6f82a1-ec0e-40b4-86b5-246dc746b27b"
+									"value": "0093d9a0-fa22-4235-a935-eba8fc37130e"
 								}
 							]
 						}
@@ -1048,7 +1268,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJzdWIiOiIyMGRlN2NjYy1lMjM3LTQ0YzAtOGFjZi00ZGQwMmNlYjA4MjAiLCJleHAiOjE3Mjk2NDk3ODd9.Q7r7TntHQWDvUDHtD_YouBFx6PmnaGwCVR34YeiO8HU",
+									"value": "{{JWT}}",
 									"type": "string"
 								}
 							]
@@ -1056,7 +1276,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{api}}/carts/my-cart/products/:productId?quantity=1",
+							"raw": "{{api}}/carts/my-cart/products/:productId?quantity=5",
 							"host": [
 								"{{api}}"
 							],
@@ -1069,13 +1289,13 @@
 							"query": [
 								{
 									"key": "quantity",
-									"value": "1"
+									"value": "5"
 								}
 							],
 							"variable": [
 								{
 									"key": "productId",
-									"value": "de6f82a1-ec0e-40b4-86b5-246dc746b27b"
+									"value": "0093d9a0-fa22-4235-a935-eba8fc37130e"
 								}
 							]
 						}
@@ -1174,7 +1394,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJzdWIiOiIyMGRlN2NjYy1lMjM3LTQ0YzAtOGFjZi00ZGQwMmNlYjA4MjAiLCJleHAiOjE3Mjk2NDk3ODd9.Q7r7TntHQWDvUDHtD_YouBFx6PmnaGwCVR34YeiO8HU",
+									"value": "{{JWT}}",
 									"type": "string"
 								}
 							]
@@ -1323,7 +1543,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJzdWIiOiIyMGRlN2NjYy1lMjM3LTQ0YzAtOGFjZi00ZGQwMmNlYjA4MjAiLCJleHAiOjE3Mjk2NDk3ODd9.Q7r7TntHQWDvUDHtD_YouBFx6PmnaGwCVR34YeiO8HU",
+									"value": "{{JWT}}",
 									"type": "string"
 								}
 							]
@@ -1474,7 +1694,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJzdWIiOiIyMGRlN2NjYy1lMjM3LTQ0YzAtOGFjZi00ZGQwMmNlYjA4MjAiLCJleHAiOjE3Mjk2NDk3ODd9.Q7r7TntHQWDvUDHtD_YouBFx6PmnaGwCVR34YeiO8HU",
+									"value": "{{JWT}}",
 									"type": "string"
 								}
 							]
@@ -1511,8 +1731,20 @@
 							},
 							"status": "Created",
 							"code": 201,
-							"_postman_previewlanguage": "plain",
+							"_postman_previewlanguage": "json",
 							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
 								{
 									"key": "X-Content-Type-Options",
 									"value": "nosniff"
@@ -1538,12 +1770,16 @@
 									"value": "DENY"
 								},
 								{
-									"key": "Content-Length",
-									"value": "0"
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 22 Oct 2024 18:49:16 GMT"
+									"value": "Sun, 03 Nov 2024 19:12:55 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -1555,7 +1791,7 @@
 								}
 							],
 							"cookie": [],
-							"body": null
+							"body": "{\n    \"id\": \"93eb190e-c788-420a-a117-d21be5b5f460\",\n    \"status\": \"WAITING_PAYMENT\",\n    \"cart\": {\n        \"id\": \"a97d39de-b275-430a-9b7b-f3226a2460a1\",\n        \"products\": [\n            {\n                \"id\": \"de6f82a1-ec0e-40b4-86b5-246dc746b27b\",\n                \"price\": 3490,\n                \"name\": \"Wireless Charging Pad\",\n                \"description\": \"Fast wireless charger compatible with Qi-enabled devices.\",\n                \"photoUrl\": \"https://images.pexels.com/photos/11874353/pexels-photo-11874353.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n                \"inCartQuantity\": 12\n            },\n            {\n                \"id\": \"8e5de9d2-bea0-4097-9541-90d1696807bc\",\n                \"price\": 24990,\n                \"name\": \"Gaming Headset Pro\",\n                \"description\": \"Over-ear gaming headset with surround sound, noise-canceling mic, and RGB lighting.\",\n                \"photoUrl\": \"https://images.pexels.com/photos/7862430/pexels-photo-7862430.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n                \"inCartQuantity\": 1\n            },\n            {\n                \"id\": \"cab1c402-523c-4c4c-a7e1-fceff09db060\",\n                \"price\": 12990,\n                \"name\": \"Smartwatch Fit Pro\",\n                \"description\": \"A fitness-focused smartwatch with heart rate monitoring, GPS tracking, and water resistance.\",\n                \"photoUrl\": \"https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg?auto=compress&cs=tinysrgb&h=650&w=940\",\n                \"inCartQuantity\": 1\n            }\n        ],\n        \"productsQuantity\": 14,\n        \"totalPrice\": 79860,\n        \"createdAt\": \"2024-11-03T00:32:25.852+00:00\"\n    },\n    \"payment\": null,\n    \"createdAt\": \"2024-11-03T19:12:55.777+00:00\"\n}"
 						}
 					]
 				},
@@ -1567,7 +1803,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJzdWIiOiJkZGQxOWNlMy02MTJjLTQ1YmMtOTFlZS1lMzBmYjNkYThmYTMiLCJleHAiOjE3Mjc4MzAwNzN9.cwI3-WsOsJigJY0W7vVtLzpRzGy7XECIJg2ychdeQd8",
+									"value": "{{JWT}}",
 									"type": "string"
 								}
 							]
@@ -1575,14 +1811,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{api}}/orders/my-orders/0aa8669a-2613-48ce-803d-1968d09737a2",
+							"raw": "{{api}}/orders/my-orders/17c2048f-b66b-42e0-a2be-44dd1c2b11ca",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
 								"orders",
 								"my-orders",
-								"0aa8669a-2613-48ce-803d-1968d09737a2"
+								"17c2048f-b66b-42e0-a2be-44dd1c2b11ca"
 							]
 						}
 					},
@@ -1601,7 +1837,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAiLCJzdWIiOiIyMGRlN2NjYy1lMjM3LTQ0YzAtOGFjZi00ZGQwMmNlYjA4MjAiLCJleHAiOjE3Mjk2NDk3ODd9.Q7r7TntHQWDvUDHtD_YouBFx6PmnaGwCVR34YeiO8HU",
+									"value": "{{JWT}}",
 									"type": "string"
 								}
 							]
@@ -1610,7 +1846,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"document\": \"33332132132\",\n    \"parcels\": 3,\n    \"card\": {\n        \"number\": \"1234567890123456\",\n        \"expiryMonth\": \"10\",\n        \"holderName\": \"John Doe\",\n        \"expiryYear\": \"2024\",\n        \"ccv\": \"123\"\n    }\n}",
+							"raw": "{\n    \"document\": \"33332132132\",\n    \"parcels\": 1,\n    \"card\": {\n        \"number\": \"1234567890123456\",\n        \"expiryMonth\": \"10\",\n        \"holderName\": \"John Doe\",\n        \"expiryYear\": \"2024\",\n        \"ccv\": \"123\"\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1631,7 +1867,7 @@
 							"variable": [
 								{
 									"key": "orderId",
-									"value": "ecba31ef-a5f1-41b2-97ed-02625b467335"
+									"value": "5dd04fa1-324d-41c3-b7b0-02fed122b429"
 								}
 							]
 						}
@@ -1644,7 +1880,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"document\": \"33332132132\",\n    \"parcels\": 3,\n    \"card\": {\n        \"number\": \"1234567890123456\",\n        \"expiryMonth\": \"10\",\n        \"holderName\": \"John Doe\",\n        \"expiryYear\": \"2024\",\n        \"ccv\": \"123\"\n    }\n}",
+									"raw": "{\n    \"document\": \"33332132132\",\n    \"parcels\": 1,\n    \"card\": {\n        \"number\": \"1234567890123456\",\n        \"expiryMonth\": \"10\",\n        \"holderName\": \"John Doe\",\n        \"expiryYear\": \"2024\",\n        \"ccv\": \"123\"\n    }\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1665,7 +1901,7 @@
 									"variable": [
 										{
 											"key": "orderId",
-											"value": "ecba31ef-a5f1-41b2-97ed-02625b467335"
+											"value": "5dd04fa1-324d-41c3-b7b0-02fed122b429"
 										}
 									]
 								}
@@ -1675,44 +1911,24 @@
 							"_postman_previewlanguage": "plain",
 							"header": [
 								{
-									"key": "X-Content-Type-Options",
-									"value": "nosniff"
+									"key": "access-control-allow-origin",
+									"value": "http://localhost:3000"
 								},
 								{
-									"key": "X-XSS-Protection",
-									"value": "0"
-								},
-								{
-									"key": "Cache-Control",
-									"value": "no-cache, no-store, max-age=0, must-revalidate"
-								},
-								{
-									"key": "Pragma",
-									"value": "no-cache"
-								},
-								{
-									"key": "Expires",
-									"value": "0"
-								},
-								{
-									"key": "X-Frame-Options",
-									"value": "DENY"
-								},
-								{
-									"key": "Content-Length",
+									"key": "content-length",
 									"value": "0"
 								},
 								{
 									"key": "Date",
-									"value": "Tue, 22 Oct 2024 18:58:35 GMT"
-								},
-								{
-									"key": "Keep-Alive",
-									"value": "timeout=60"
+									"value": "Thu, 14 Nov 2024 22:37:37 GMT"
 								},
 								{
 									"key": "Connection",
 									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=72"
 								}
 							],
 							"cookie": [],
@@ -1723,10 +1939,36 @@
 			]
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "api",
 			"value": "http://localhost:8080"
+		},
+		{
+			"key": "JWT",
+			"value": ""
 		}
 	]
 }
