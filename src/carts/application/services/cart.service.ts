@@ -38,6 +38,12 @@ export class CartService {
       throw new BadRequestException('Quantity to add must be a positive value');
     }
 
+    if (cart.productsQuantity + product.inCartQuantity > 30) {
+      throw new BadRequestException(
+        'Quantity to add must not pass the maximum cart capacity',
+      );
+    }
+
     const existingProduct = cart.products.find((p) => p._id === product._id);
 
     if (existingProduct) {
@@ -54,16 +60,6 @@ export class CartService {
 
     cart.totalPrice += priceToAdd;
 
-    if (product.inCartQuantity <= 0) {
-      throw new BadRequestException('Quantity to add must be a positive value');
-    }
-
-    if (cart.productsQuantity + product.inCartQuantity > 30) {
-      throw new BadRequestException(
-        'Quantity to add must not pass the maximum cart capacity',
-      );
-    }
-
     cart.productsQuantity += product.inCartQuantity;
   }
 
@@ -76,7 +72,7 @@ export class CartService {
 
     if (existingProduct.inCartQuantity - quantityToSub < 0) {
       throw new BadRequestException(
-        'In cart quantity cannot be less than zero',
+        'Product in cart quantity cannot be less than zero',
       );
     }
 
