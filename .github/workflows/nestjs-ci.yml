@@ -23,9 +23,27 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-  build:
+  test:
     runs-on: ubuntu-latest
     needs: lint
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 21
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
     steps:
       - name: Check out code
         uses: actions/checkout@v3
