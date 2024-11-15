@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { Order } from 'src/orders/domain/entities/order.entity';
-import { ORDER_STATUS } from 'src/orders/domain/enum/order-status.enum';
-import { OrderRepository } from 'src/orders/domain/repositories/order.repository';
-import { SortOrder } from 'src/shared/domain/repositories/base-paginated-repository.contract';
+
+import { Order } from '@/orders/domain/entities/order.entity';
+import { ORDER_STATUS } from '@/orders/domain/enum/order-status.enum';
+import { OrderRepository } from '@/orders/domain/repositories/order.repository';
+import { SortOrder } from '@/shared/domain/repositories/base-paginated-repository.contract';
 
 @Injectable()
 export class OrderService {

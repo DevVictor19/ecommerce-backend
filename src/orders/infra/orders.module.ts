@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CartsModule } from 'src/carts/infra/carts.module';
+
+import { CartsModule } from '@/carts/infra/carts.module';
 
 import { OrderService } from '../application/services/order.service';
 import { CancelOrderUseCase } from '../application/usecases/cancel-order.usecase';

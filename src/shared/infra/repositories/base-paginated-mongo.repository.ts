@@ -1,9 +1,10 @@
 import { Model, SortOrder } from 'mongoose';
+
 import {
   BasePaginatedRepository,
   Page,
   Params,
-} from 'src/shared/domain/repositories/base-paginated-repository.contract';
+} from '@/shared/domain/repositories/base-paginated-repository.contract';
 
 import { BaseMongoRepository } from './base-mongo.repository';
 

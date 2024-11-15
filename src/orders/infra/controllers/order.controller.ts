@@ -8,23 +8,24 @@ import {
   Query,
   Req,
 } from '@nestjs/common';
-import { JwtPayload } from 'src/auth/application/providers/jwt-provider.contract';
-import { AuthenticatedRoute } from 'src/auth/infra/decorators/authenticated-route.decorator';
+
+import { JwtPayload } from '@/auth/application/providers/jwt-provider.contract';
+import { AuthenticatedRoute } from '@/auth/infra/decorators/authenticated-route.decorator';
 import {
   AdminPermission,
   ClientPermission,
-} from 'src/auth/infra/decorators/roles.decorator';
-import { CancelOrderUseCase } from 'src/orders/application/usecases/cancel-order.usecase';
-import { CreateOrderUseCase } from 'src/orders/application/usecases/create-order.usecase';
-import { FindAllOrdersUseCase } from 'src/orders/application/usecases/find-all-orders.usecase';
-import { FindAllUserOrdersUseCase } from 'src/orders/application/usecases/find-all-user-orders.usecase';
-import { FindOrderByIdUseCase } from 'src/orders/application/usecases/find-order-by-id.usecase';
-import { Order } from 'src/orders/domain/entities/order.entity';
-import { ORDER_STATUS } from 'src/orders/domain/enum/order-status.enum';
+} from '@/auth/infra/decorators/roles.decorator';
+import { CancelOrderUseCase } from '@/orders/application/usecases/cancel-order.usecase';
+import { CreateOrderUseCase } from '@/orders/application/usecases/create-order.usecase';
+import { FindAllOrdersUseCase } from '@/orders/application/usecases/find-all-orders.usecase';
+import { FindAllUserOrdersUseCase } from '@/orders/application/usecases/find-all-user-orders.usecase';
+import { FindOrderByIdUseCase } from '@/orders/application/usecases/find-order-by-id.usecase';
+import { Order } from '@/orders/domain/entities/order.entity';
+import { ORDER_STATUS } from '@/orders/domain/enum/order-status.enum';
 import {
   Page,
   SortOrder,
-} from 'src/shared/domain/repositories/base-paginated-repository.contract';
+} from '@/shared/domain/repositories/base-paginated-repository.contract';
 
 import { OrderDto } from '../dtos/order.dto';
 import { OrderMapper } from '../mappers/order.mapper';

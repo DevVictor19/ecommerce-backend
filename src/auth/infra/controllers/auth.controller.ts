@@ -7,8 +7,9 @@ import {
   Post,
   UseInterceptors,
 } from '@nestjs/common';
-import { LoginUseCase } from 'src/auth/application/usecases/login.usecase';
-import { SignupUseCase } from 'src/auth/application/usecases/signup.usecase';
+
+import { LoginUseCase } from '@/auth/application/usecases/login.usecase';
+import { SignupUseCase } from '@/auth/application/usecases/signup.usecase';
 
 import { LoginDto } from '../dtos/login.dto';
 import { SignupDto } from '../dtos/signup.dto';

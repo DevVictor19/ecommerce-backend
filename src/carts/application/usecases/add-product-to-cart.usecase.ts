@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CartFactory } from 'src/carts/domain/factories/cart.factory';
-import { CartProductFactory } from 'src/carts/domain/factories/cart-product.factory';
-import { ProductService } from 'src/products/application/services/product.service';
+
+import { CartFactory } from '@/carts/domain/factories/cart.factory';
+import { CartProductFactory } from '@/carts/domain/factories/cart-product.factory';
+import { ProductService } from '@/products/application/services/product.service';
 
 import { CartService } from '../services/cart.service';
 

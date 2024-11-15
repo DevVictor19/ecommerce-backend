@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { UserService } from 'src/users/application/services/user.service';
+
+import { UserService } from '@/users/application/services/user.service';
 
 import { HashProvider } from '../providers/hash-provider.contract';
 

@@ -2,13 +2,14 @@ import { URLSearchParams } from 'node:url';
 
 import { Inject, InternalServerErrorException, Logger } from '@nestjs/common';
 import axios, { AxiosInstance, isAxiosError } from 'axios';
+
 import {
   Card,
   Charge,
   Customer,
   PaymentGateway,
-} from 'src/payments/application/gateways/payment-gateway.contract';
-import { EnvConfigProvider } from 'src/shared/application/providers/env-config-provider.contract';
+} from '@/payments/application/gateways/payment-gateway.contract';
+import { EnvConfigProvider } from '@/shared/application/providers/env-config-provider.contract';
 
 import {
   CreateCreditCardChargeRequest,

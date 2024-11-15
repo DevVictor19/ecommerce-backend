@@ -1,4 +1,4 @@
-import { BaseRepository } from 'src/shared/domain/repositories/base-repository.contract';
+import { BaseRepository } from '@/shared/domain/repositories/base-repository.contract';
 
 import { Cart } from '../entities/cart.entity';
 

@@ -3,7 +3,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { ORDER_STATUS } from 'src/orders/domain/enum/order-status.enum';
+
+import { ORDER_STATUS } from '@/orders/domain/enum/order-status.enum';
 
 import { OrderService } from '../services/order.service';
 

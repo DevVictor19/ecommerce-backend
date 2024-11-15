@@ -1,5 +1,6 @@
 import { Model } from 'mongoose';
-import { BaseRepository } from 'src/shared/domain/repositories/base-repository.contract';
+
+import { BaseRepository } from '@/shared/domain/repositories/base-repository.contract';
 
 export abstract class BaseMongoRepository<T extends object>
   implements BaseRepository<T>

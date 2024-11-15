@@ -1,4 +1,4 @@
-import { BasePaginatedRepository } from 'src/shared/domain/repositories/base-paginated-repository.contract';
+import { BasePaginatedRepository } from '@/shared/domain/repositories/base-paginated-repository.contract';
 
 import { Order } from '../entities/order.entity';
 

@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { CartProduct } from 'src/carts/domain/entities/cart-product.entity';
+
+import { CartProduct } from '@/carts/domain/entities/cart-product.entity';
 
 export type OrderCartDocument = HydratedDocument<OrderCart>;
 

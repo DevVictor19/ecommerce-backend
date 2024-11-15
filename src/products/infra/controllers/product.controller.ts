@@ -9,21 +9,22 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { AuthenticatedRoute } from 'src/auth/infra/decorators/authenticated-route.decorator';
+
+import { AuthenticatedRoute } from '@/auth/infra/decorators/authenticated-route.decorator';
 import {
   AdminPermission,
   ClientPermission,
-} from 'src/auth/infra/decorators/roles.decorator';
-import { CreateProductUseCase } from 'src/products/application/usecases/create-product.usecase';
-import { DeleteProductUseCase } from 'src/products/application/usecases/delete-product.usecase';
-import { FindAllProductsUseCase } from 'src/products/application/usecases/find-all-products.usecase';
-import { FindProductByIdUseCase } from 'src/products/application/usecases/find-product-by-id.usecase';
-import { UpdateProductUseCase } from 'src/products/application/usecases/update-product.usecase';
-import { Product } from 'src/products/domain/entities/product.entity';
+} from '@/auth/infra/decorators/roles.decorator';
+import { CreateProductUseCase } from '@/products/application/usecases/create-product.usecase';
+import { DeleteProductUseCase } from '@/products/application/usecases/delete-product.usecase';
+import { FindAllProductsUseCase } from '@/products/application/usecases/find-all-products.usecase';
+import { FindProductByIdUseCase } from '@/products/application/usecases/find-product-by-id.usecase';
+import { UpdateProductUseCase } from '@/products/application/usecases/update-product.usecase';
+import { Product } from '@/products/domain/entities/product.entity';
 import {
   Page,
   SortOrder,
-} from 'src/shared/domain/repositories/base-paginated-repository.contract';
+} from '@/shared/domain/repositories/base-paginated-repository.contract';
 
 import { CreateProductDto } from '../dtos/create-product.dto';
 import { ProductDto } from '../dtos/product.dto';

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { HashProvider } from 'src/auth/application/providers/hash-provider.contract';
+
+import { HashProvider } from '@/auth/application/providers/hash-provider.contract';
 
 @Injectable()
 export class HashProviderImpl implements HashProvider {

@@ -12,13 +12,14 @@ import {
   Res,
 } from '@nestjs/common';
 import { FastifyReply } from 'fastify';
-import { JwtPayload } from 'src/auth/application/providers/jwt-provider.contract';
-import { AuthenticatedRoute } from 'src/auth/infra/decorators/authenticated-route.decorator';
-import { ClientPermission } from 'src/auth/infra/decorators/roles.decorator';
-import { AddProductToCartUseCase } from 'src/carts/application/usecases/add-product-to-cart.usecase';
-import { ClearCartUseCase } from 'src/carts/application/usecases/clear-cart.usecase';
-import { FindUserCartUseCase } from 'src/carts/application/usecases/find-user-cart.usecase';
-import { SubtractProductFromCartUseCase } from 'src/carts/application/usecases/subtract-product-from-cart.usecase';
+
+import { JwtPayload } from '@/auth/application/providers/jwt-provider.contract';
+import { AuthenticatedRoute } from '@/auth/infra/decorators/authenticated-route.decorator';
+import { ClientPermission } from '@/auth/infra/decorators/roles.decorator';
+import { AddProductToCartUseCase } from '@/carts/application/usecases/add-product-to-cart.usecase';
+import { ClearCartUseCase } from '@/carts/application/usecases/clear-cart.usecase';
+import { FindUserCartUseCase } from '@/carts/application/usecases/find-user-cart.usecase';
+import { SubtractProductFromCartUseCase } from '@/carts/application/usecases/subtract-product-from-cart.usecase';
 
 import { CartMapper } from '../mappers/cart.mapper';
 
