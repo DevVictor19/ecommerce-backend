@@ -25,7 +25,7 @@ describe('CartService', () => {
     cartService = new CartService(cartRepository);
   });
 
-  describe('create()', () => {
+  describe('create', () => {
     it('should create a cart', async () => {
       const cart = createCartEntity();
 
@@ -35,7 +35,7 @@ describe('CartService', () => {
     });
   });
 
-  describe('update()', () => {
+  describe('update', () => {
     it('should update a cart', async () => {
       const cart = createCartEntity();
 
@@ -49,7 +49,7 @@ describe('CartService', () => {
     });
   });
 
-  describe('findByUserId()', () => {
+  describe('findByUserId', () => {
     it('should find a cart by userId', () => {
       const userId = 'user-id';
 
@@ -59,7 +59,7 @@ describe('CartService', () => {
     });
   });
 
-  describe('delete()', () => {
+  describe('delete', () => {
     it('should delete a cart by cartId', async () => {
       const cartId = 'cart-id';
 
@@ -69,7 +69,7 @@ describe('CartService', () => {
     });
   });
 
-  describe('addCartProduct()', () => {
+  describe('addCartProduct', () => {
     it('should add a product to the cart', () => {
       const cart = createCartEntity();
 
@@ -158,7 +158,7 @@ describe('CartService', () => {
     });
   });
 
-  describe('subtractCartProduct()', () => {
+  describe('subtractCartProduct', () => {
     it('should subtract a product from the cart', () => {
       const productId = 'product-id';
 
