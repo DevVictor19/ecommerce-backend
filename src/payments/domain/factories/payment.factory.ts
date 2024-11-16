@@ -12,7 +12,7 @@ export class PaymentFactory {
     const entity = new Payment();
     entity._id = randomUUID();
     entity.createdAt = new Date();
-    entity.method = PAYMENT_METHOD.CREDIT_CART;
+    entity.method = PAYMENT_METHOD.CREDIT_CARD;
     entity.parcels = parcels;
     entity.price = price;
     entity.transactionCode = transactionCode;

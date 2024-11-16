@@ -16,7 +16,7 @@ export class PaymentDto {
   @IsInt()
   price: number;
 
-  @IsIn([PAYMENT_METHOD.CREDIT_CART, PAYMENT_METHOD.DEBIT_CARD])
+  @IsIn([PAYMENT_METHOD.CREDIT_CARD, PAYMENT_METHOD.DEBIT_CARD])
   method: PAYMENT_METHOD;
 
   @IsPositive()
