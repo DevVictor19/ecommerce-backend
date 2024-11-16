@@ -44,7 +44,7 @@ export class AsaasPaymentGateway implements PaymentGateway {
     document: string,
   ): Promise<Customer> {
     try {
-      const body: CreateCustomerRequest = { document, email, name };
+      const body: CreateCustomerRequest = { cpfCnpj: document, email, name };
 
       const { data } = await this.api.post<CreateCustomerResponse>(
         '/customers',
@@ -70,7 +70,7 @@ export class AsaasPaymentGateway implements PaymentGateway {
       const { data } = await this.api.get<findCustomerByDocumentResponse>(
         '/customers',
         {
-          params: new URLSearchParams({ document }),
+          params: new URLSearchParams({ cpfCnpj: document }),
         },
       );
 
