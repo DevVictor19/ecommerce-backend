@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker/.';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
 
 import { CartService } from '@/carts/application/services/cart.service';
@@ -73,8 +72,8 @@ describe('CartService', () => {
     it('should add a product to the cart', () => {
       const cart = createCartEntity();
 
-      const productInCartQuantity = faker.number.int({ max: 30 });
-      const productPrice = faker.number.int({ min: 1000, max: 10000 });
+      const productInCartQuantity = 10; // Fixed quantity
+      const productPrice = 5000; // Fixed price
 
       const product = createCartProductEntity({
         inCartQuantity: productInCartQuantity,
@@ -92,7 +91,7 @@ describe('CartService', () => {
       const cart = createCartEntity();
 
       const product = createCartProductEntity({
-        inCartQuantity: 0,
+        inCartQuantity: 0, // Non-positive quantity
       });
 
       expect(() => cartService.addCartProduct(cart, product)).toThrow(
@@ -100,13 +99,13 @@ describe('CartService', () => {
       );
     });
 
-    it('should throw an error if quantity to add pass the maximum cart capacity', () => {
+    it('should throw an error if quantity to add passes the maximum cart capacity', () => {
       const maximumCartCapacity = 30;
 
       const cart = createCartEntity();
 
       const product = createCartProductEntity({
-        inCartQuantity: maximumCartCapacity + 1,
+        inCartQuantity: maximumCartCapacity + 1, // Exceeds max capacity
         price: 1000,
       });
 
@@ -145,7 +144,7 @@ describe('CartService', () => {
 
     it('should throw an error if price to add is non-positive', () => {
       const cart = createCartEntity({
-        totalPrice: -100,
+        totalPrice: -100, // Non-positive total price
       });
 
       const product = createCartProductEntity({
@@ -162,8 +161,8 @@ describe('CartService', () => {
     it('should subtract a product from the cart', () => {
       const productId = 'product-id';
 
-      const productInCartQuantity = faker.number.int({ min: 1, max: 30 });
-      const productPrice = faker.number.int({ min: 1000, max: 10000 });
+      const productInCartQuantity = 5; // Fixed quantity
+      const productPrice = 2000; // Fixed price
 
       const cartProduct = createCartProductEntity({
         _id: productId,
@@ -190,7 +189,7 @@ describe('CartService', () => {
       expect(cart.totalPrice).toBe(updatedCartTotalPrice);
     });
 
-    it('should throw an error if product its not present in cart', () => {
+    it('should throw an error if product is not present in cart', () => {
       const cart = createCartEntity();
 
       expect(() =>
@@ -222,7 +221,7 @@ describe('CartService', () => {
       ).toThrow(BadRequestException);
     });
 
-    it('should remove the product from cart if his in cart quantity equals zero', () => {
+    it('should remove the product from cart if its in-cart quantity equals zero', () => {
       const productId = 'product-id';
 
       const product = createCartProductEntity({
@@ -255,7 +254,7 @@ describe('CartService', () => {
 
       const cart = createCartEntity({
         products: [product],
-        totalPrice: -1000,
+        totalPrice: -1000, // Non-positive total price
         productsQuantity: product.inCartQuantity,
       });
 
