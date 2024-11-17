@@ -1,4 +1,4 @@
-name: CI - Lint and Build Next.js
+name: CI - Lint and Build Nest.js
 
 on:
   push:
