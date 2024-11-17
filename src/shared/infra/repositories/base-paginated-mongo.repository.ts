@@ -33,8 +33,10 @@ export abstract class BasePaginatedMongoRepository<T extends object>
     const filterConfig: Record<string, any> = {};
 
     Object.keys(filters).forEach((key) => {
-      if (filters[key as keyof typeof filters] !== undefined) {
-        filterConfig[key] = filters[key as keyof typeof filters];
+      const filterValue = filters[key as keyof typeof filters];
+
+      if (filterValue !== undefined && filterValue.trim() !== '') {
+        filterConfig[key] = { $regex: new RegExp(filterValue.trim(), 'i') };
       }
     });
 
