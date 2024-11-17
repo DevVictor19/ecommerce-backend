@@ -22,7 +22,7 @@ export type CreateCustomerRequest = {
 
 export type CreateCustomerResponse = Customer;
 
-export type findCustomerByDocumentResponse = {
+export type FindCustomerByDocumentResponse = {
   data: Customer[];
 };
 

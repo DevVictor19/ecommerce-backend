@@ -16,7 +16,7 @@ import {
   CreateCreditCardChargeResponse,
   CreateCustomerRequest,
   CreateCustomerResponse,
-  findCustomerByDocumentResponse,
+  FindCustomerByDocumentResponse,
 } from './asaas.contract';
 
 export class AsaasPaymentGateway implements PaymentGateway {
@@ -67,7 +67,7 @@ export class AsaasPaymentGateway implements PaymentGateway {
 
   async findCustomerByDocument(document: string): Promise<Customer | null> {
     try {
-      const { data } = await this.api.get<findCustomerByDocumentResponse>(
+      const { data } = await this.api.get<FindCustomerByDocumentResponse>(
         '/customers',
         {
           params: new URLSearchParams({ cpfCnpj: document }),
