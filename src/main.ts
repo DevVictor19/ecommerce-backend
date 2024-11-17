@@ -30,6 +30,6 @@ async function bootstrap() {
     methods: '*',
   });
 
-  await app.listen(envConfigProvider.getServerPort());
+  await app.listen(envConfigProvider.getServerPort(), '0.0.0.0');
 }
 bootstrap();

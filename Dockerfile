@@ -1,4 +1,4 @@
-FROM node:22-alpine AS builder
+FROM node:20-slim AS builder
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ RUN npm run build
 
 RUN npm prune --production
 
-FROM node:22-alpine
+FROM node:20-slim
 
 WORKDIR /app
 
@@ -24,4 +24,4 @@ COPY --from=builder /app/dist ./dist
 
 EXPOSE 8080
 
-CMD ["node", "dist/main.js"]
+CMD ["node", "dist/src/main.js"]
