@@ -10,7 +10,6 @@ import {
   Query,
 } from '@nestjs/common';
 
-import { AuthenticatedRoute } from '@/auth/infra/decorators/authenticated-route.decorator';
 import {
   AdminPermission,
   ClientPermission,
@@ -32,7 +31,6 @@ import { UpdateProductDto } from '../dtos/update-product.dto';
 import { ProductMapper } from '../mappers/product.mapper';
 
 @Controller('/products')
-@AuthenticatedRoute()
 export class ProductController {
   constructor(
     private readonly createProductUseCase: CreateProductUseCase,

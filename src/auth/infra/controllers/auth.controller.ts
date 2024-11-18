@@ -11,11 +11,13 @@ import {
 import { LoginUseCase } from '@/auth/application/usecases/login.usecase';
 import { SignupUseCase } from '@/auth/application/usecases/signup.usecase';
 
+import { Public } from '../decorators/public.decorator';
 import { LoginDto } from '../dtos/login.dto';
 import { SignupDto } from '../dtos/signup.dto';
 import { TokenDto } from '../dtos/token.dto';
 
 @Controller('/auth')
+@Public()
 export class AuthController {
   constructor(
     private readonly signupUseCase: SignupUseCase,

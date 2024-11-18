@@ -10,7 +10,6 @@ import {
 } from '@nestjs/common';
 
 import { JwtPayload } from '@/auth/application/providers/jwt-provider.contract';
-import { AuthenticatedRoute } from '@/auth/infra/decorators/authenticated-route.decorator';
 import {
   AdminPermission,
   ClientPermission,
@@ -31,7 +30,6 @@ import { OrderDto } from '../dtos/order.dto';
 import { OrderMapper } from '../mappers/order.mapper';
 
 @Controller('orders')
-@AuthenticatedRoute()
 export class OrderController {
   constructor(
     private readonly cancelOrderUseCase: CancelOrderUseCase,

@@ -14,7 +14,6 @@ import {
 import { FastifyReply } from 'fastify';
 
 import { JwtPayload } from '@/auth/application/providers/jwt-provider.contract';
-import { AuthenticatedRoute } from '@/auth/infra/decorators/authenticated-route.decorator';
 import { ClientPermission } from '@/auth/infra/decorators/roles.decorator';
 import { AddProductToCartUseCase } from '@/carts/application/usecases/add-product-to-cart.usecase';
 import { ClearCartUseCase } from '@/carts/application/usecases/clear-cart.usecase';
@@ -24,8 +23,6 @@ import { SubtractProductFromCartUseCase } from '@/carts/application/usecases/sub
 import { CartMapper } from '../mappers/cart.mapper';
 
 @Controller('/carts')
-@AuthenticatedRoute()
-@ClientPermission()
 export class CartController {
   constructor(
     private readonly addProductToCartUseCase: AddProductToCartUseCase,
@@ -35,6 +32,7 @@ export class CartController {
   ) {}
 
   @Get('/my-cart')
+  @ClientPermission()
   async findUserCart(@Req() req: any, @Res() res: FastifyReply) {
     const loggedUser: JwtPayload = req.user;
 
@@ -48,6 +46,7 @@ export class CartController {
   }
 
   @Delete('/my-cart')
+  @ClientPermission()
   async clearCart(@Req() req: any) {
     const loggedUser: JwtPayload = req.user;
 
@@ -55,6 +54,7 @@ export class CartController {
   }
 
   @Post('/my-cart/products/:productId')
+  @ClientPermission()
   async addProductToCart(
     @Req() req: any,
     @Param('productId', ParseUUIDPipe) productId: string,
@@ -70,6 +70,7 @@ export class CartController {
   }
 
   @Delete('/my-cart/products/:productId')
+  @ClientPermission()
   async subtractProductFromCart(
     @Req() req: any,
     @Param('productId', ParseUUIDPipe) productId: string,
