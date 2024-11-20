@@ -29,7 +29,6 @@ services:
 
 networks:
   ecommerce:
-    driver: bridge
 
 volumes:
   ecommerce-mongo:

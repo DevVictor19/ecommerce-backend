@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Product } from 'src/products/domain/entities/product.entity';
-import { SortOrder } from 'src/shared/domain/repositories/base-paginated-repository.contract';
+
+import { Product } from '@/products/domain/entities/product.entity';
+import { SortOrder } from '@/shared/domain/repositories/base-paginated-repository.contract';
 
 import { ProductService } from '../services/product.service';
 

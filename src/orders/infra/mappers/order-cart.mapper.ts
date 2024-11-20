@@ -1,6 +1,6 @@
-import { CartDto } from 'src/carts/infra/dtos/cart.dto';
-import { CartProductMapper } from 'src/carts/infra/mappers/cart-product.mapper';
-import { OrderCart } from 'src/orders/domain/entities/oder-cart.entity';
+import { CartDto } from '@/carts/infra/dtos/cart.dto';
+import { CartProductMapper } from '@/carts/infra/mappers/cart-product.mapper';
+import { OrderCart } from '@/orders/domain/entities/oder-cart.entity';
 
 export class OrderCartMapper {
   static toDto(entity: OrderCart): CartDto {

@@ -1,4 +1,4 @@
-import { Product } from 'src/products/domain/entities/product.entity';
+import { Product } from '@/products/domain/entities/product.entity';
 
 import { ProductDto } from '../dtos/product.dto';
 

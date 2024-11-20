@@ -1,5 +1,5 @@
-import { Order } from 'src/orders/domain/entities/order.entity';
-import { PaymentMapper } from 'src/payments/infra/mappers/payment.mapper';
+import { Order } from '@/orders/domain/entities/order.entity';
+import { PaymentMapper } from '@/payments/infra/mappers/payment.mapper';
 
 import { OrderDto } from '../dtos/order.dto';
 import { OrderCartMapper } from './order-cart.mapper';

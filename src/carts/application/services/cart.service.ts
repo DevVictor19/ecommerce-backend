@@ -3,10 +3,11 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { Cart } from 'src/carts/domain/entities/cart.entity';
-import { CartProduct } from 'src/carts/domain/entities/cart-product.entity';
-import { CartRepository } from 'src/carts/domain/repositories/cart.repository';
-import { Product } from 'src/products/domain/entities/product.entity';
+
+import { Cart } from '@/carts/domain/entities/cart.entity';
+import { CartProduct } from '@/carts/domain/entities/cart-product.entity';
+import { CartRepository } from '@/carts/domain/repositories/cart.repository';
+import { Product } from '@/products/domain/entities/product.entity';
 
 @Injectable()
 export class CartService {
@@ -37,6 +38,12 @@ export class CartService {
       throw new BadRequestException('Quantity to add must be a positive value');
     }
 
+    if (cart.productsQuantity + product.inCartQuantity > 30) {
+      throw new BadRequestException(
+        'Quantity to add must not pass the maximum cart capacity',
+      );
+    }
+
     const existingProduct = cart.products.find((p) => p._id === product._id);
 
     if (existingProduct) {
@@ -53,16 +60,6 @@ export class CartService {
 
     cart.totalPrice += priceToAdd;
 
-    if (product.inCartQuantity <= 0) {
-      throw new BadRequestException('Quantity to add must be a positive value');
-    }
-
-    if (cart.productsQuantity + product.inCartQuantity > 30) {
-      throw new BadRequestException(
-        'Quantity to add must not pass the maximum cart capacity',
-      );
-    }
-
     cart.productsQuantity += product.inCartQuantity;
   }
 
@@ -75,7 +72,7 @@ export class CartService {
 
     if (existingProduct.inCartQuantity - quantityToSub < 0) {
       throw new BadRequestException(
-        'In cart quantity cannot be less than zero',
+        'Product in cart quantity cannot be less than zero',
       );
     }
 

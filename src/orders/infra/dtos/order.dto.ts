@@ -5,9 +5,10 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { CartDto } from 'src/carts/infra/dtos/cart.dto';
-import { ORDER_STATUS } from 'src/orders/domain/enum/order-status.enum';
-import { PaymentDto } from 'src/payments/infra/dtos/payment.dto';
+
+import { CartDto } from '@/carts/infra/dtos/cart.dto';
+import { ORDER_STATUS } from '@/orders/domain/enum/order-status.enum';
+import { PaymentDto } from '@/payments/infra/dtos/payment.dto';
 
 export class OrderDto {
   @IsString()

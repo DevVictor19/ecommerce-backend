@@ -3,10 +3,11 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CartProduct } from 'src/carts/domain/entities/cart-product.entity';
-import { Product } from 'src/products/domain/entities/product.entity';
-import { ProductRepository } from 'src/products/domain/repositories/product.repository';
-import { SortOrder } from 'src/shared/domain/repositories/base-paginated-repository.contract';
+
+import { CartProduct } from '@/carts/domain/entities/cart-product.entity';
+import { Product } from '@/products/domain/entities/product.entity';
+import { ProductRepository } from '@/products/domain/repositories/product.repository';
+import { SortOrder } from '@/shared/domain/repositories/base-paginated-repository.contract';
 
 @Injectable()
 export class ProductService {

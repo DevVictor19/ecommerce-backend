@@ -1,5 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { ProductFactory } from 'src/products/domain/factories/product.factory';
+
+import { ProductFactory } from '@/products/domain/factories/product.factory';
 
 import { ProductService } from '../services/product.service';
 

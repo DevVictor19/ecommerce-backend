@@ -2,20 +2,21 @@ import { URLSearchParams } from 'node:url';
 
 import { Inject, InternalServerErrorException, Logger } from '@nestjs/common';
 import axios, { AxiosInstance, isAxiosError } from 'axios';
+
 import {
   Card,
   Charge,
   Customer,
   PaymentGateway,
-} from 'src/payments/application/gateways/payment-gateway.contract';
-import { EnvConfigProvider } from 'src/shared/application/providers/env-config-provider.contract';
+} from '@/payments/application/gateways/payment-gateway.contract';
+import { EnvConfigProvider } from '@/shared/application/providers/env-config-provider.contract';
 
 import {
   CreateCreditCardChargeRequest,
   CreateCreditCardChargeResponse,
   CreateCustomerRequest,
   CreateCustomerResponse,
-  findCustomerByDocumentResponse,
+  FindCustomerByDocumentResponse,
 } from './asaas.contract';
 
 export class AsaasPaymentGateway implements PaymentGateway {
@@ -43,7 +44,7 @@ export class AsaasPaymentGateway implements PaymentGateway {
     document: string,
   ): Promise<Customer> {
     try {
-      const body: CreateCustomerRequest = { document, email, name };
+      const body: CreateCustomerRequest = { cpfCnpj: document, email, name };
 
       const { data } = await this.api.post<CreateCustomerResponse>(
         '/customers',
@@ -66,10 +67,10 @@ export class AsaasPaymentGateway implements PaymentGateway {
 
   async findCustomerByDocument(document: string): Promise<Customer | null> {
     try {
-      const { data } = await this.api.get<findCustomerByDocumentResponse>(
+      const { data } = await this.api.get<FindCustomerByDocumentResponse>(
         '/customers',
         {
-          params: new URLSearchParams({ document }),
+          params: new URLSearchParams({ cpfCnpj: document }),
         },
       );
 

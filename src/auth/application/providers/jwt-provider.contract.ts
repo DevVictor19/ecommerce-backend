@@ -1,5 +1,5 @@
-import { User } from 'src/users/domain/entities/user.entity';
-import { ROLE } from 'src/users/domain/enums/role.enum';
+import { User } from '@/users/domain/entities/user.entity';
+import { ROLE } from '@/users/domain/enums/role.enum';
 
 export type JwtPayload = {
   userId: string;

@@ -5,7 +5,8 @@ import {
   IsPositive,
   IsString,
 } from 'class-validator';
-import { PAYMENT_METHOD } from 'src/payments/domain/enums/payment-method.enum';
+
+import { PAYMENT_METHOD } from '@/payments/domain/enums/payment-method.enum';
 
 export class PaymentDto {
   @IsString()
@@ -15,7 +16,7 @@ export class PaymentDto {
   @IsInt()
   price: number;
 
-  @IsIn([PAYMENT_METHOD.CREDIT_CART, PAYMENT_METHOD.DEBIT_CARD])
+  @IsIn([PAYMENT_METHOD.CREDIT_CARD, PAYMENT_METHOD.DEBIT_CARD])
   method: PAYMENT_METHOD;
 
   @IsPositive()

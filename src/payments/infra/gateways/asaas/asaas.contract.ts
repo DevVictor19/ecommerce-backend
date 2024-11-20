@@ -17,12 +17,12 @@ export type Charge = {
 export type CreateCustomerRequest = {
   name: string;
   email: string;
-  document: string;
+  cpfCnpj: string;
 };
 
 export type CreateCustomerResponse = Customer;
 
-export type findCustomerByDocumentResponse = {
+export type FindCustomerByDocumentResponse = {
   data: Customer[];
 };
 

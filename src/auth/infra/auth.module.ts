@@ -1,5 +1,6 @@
 import { Global, Module } from '@nestjs/common';
-import { UsersModule } from 'src/users/infra/users.module';
+
+import { UsersModule } from '@/users/infra/users.module';
 
 import { HashProvider } from '../application/providers/hash-provider.contract';
 import { JwtProvider } from '../application/providers/jwt-provider.contract';

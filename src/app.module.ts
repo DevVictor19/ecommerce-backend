@@ -20,7 +20,5 @@ import { UsersModule } from './users/infra/users.module';
     OrdersModule,
     PaymentsModule,
   ],
-  controllers: [],
-  providers: [],
 })
 export class AppModule {}

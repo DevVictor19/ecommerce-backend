@@ -1,4 +1,4 @@
-import { Payment } from 'src/payments/domain/entities/payment.entity';
+import { Payment } from '@/payments/domain/entities/payment.entity';
 
 import { PaymentDto } from '../dtos/payment.dto';
 

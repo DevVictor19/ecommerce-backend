@@ -3,11 +3,12 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { OrderService } from 'src/orders/application/services/order.service';
-import { ORDER_STATUS } from 'src/orders/domain/enum/order-status.enum';
-import { PaymentFactory } from 'src/payments/domain/factories/payment.factory';
-import { ProductService } from 'src/products/application/services/product.service';
-import { UserService } from 'src/users/application/services/user.service';
+
+import { OrderService } from '@/orders/application/services/order.service';
+import { ORDER_STATUS } from '@/orders/domain/enum/order-status.enum';
+import { PaymentFactory } from '@/payments/domain/factories/payment.factory';
+import { ProductService } from '@/products/application/services/product.service';
+import { UserService } from '@/users/application/services/user.service';
 
 import { Card, PaymentGateway } from '../gateways/payment-gateway.contract';
 
