@@ -16,7 +16,7 @@ export class UpdateProductUseCase {
   ) {
     const product = await this.productService.findByName(name);
 
-    if (product) {
+    if (product && product._id !== productId) {
       throw new BadRequestException('Product name already exists');
     }
 

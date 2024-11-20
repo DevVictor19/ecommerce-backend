@@ -3,11 +3,14 @@ import { Test, TestingModule } from '@nestjs/testing';
 
 import { ProductService } from '@/products/application/services/product.service';
 import { UpdateProductUseCase } from '@/products/application/usecases/update-product.usecase';
-import { Product } from '@/products/domain/entities/product.entity';
 
 describe('UpdateProductUseCase', () => {
   let useCase: UpdateProductUseCase;
-  let productService: jest.Mocked<ProductService>;
+
+  const mockProductService = {
+    findByName: jest.fn(),
+    update: jest.fn(),
+  };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -15,73 +18,91 @@ describe('UpdateProductUseCase', () => {
         UpdateProductUseCase,
         {
           provide: ProductService,
-          useValue: {
-            findByName: jest.fn(),
-            update: jest.fn(),
-          },
+          useValue: mockProductService,
         },
       ],
     }).compile();
 
     useCase = module.get<UpdateProductUseCase>(UpdateProductUseCase);
-    productService = module.get(ProductService);
   });
 
-  it('should update the product when the name does not exist', async () => {
-    const productId = 'valid-product-id';
-    const updatedFields = {
-      price: 200,
-      name: 'Updated Product Name',
-      description: 'Updated Description',
-      photoUrl: 'http://example.com/updated-photo.jpg',
-      stockQuantity: 50,
-    };
-
-    productService.findByName.mockResolvedValue(null);
-
-    await useCase.execute(
-      productId,
-      updatedFields.price,
-      updatedFields.name,
-      updatedFields.description,
-      updatedFields.photoUrl,
-      updatedFields.stockQuantity,
-    );
-
-    expect(productService.findByName).toHaveBeenCalledWith(updatedFields.name);
-    expect(productService.update).toHaveBeenCalledWith(
-      productId,
-      updatedFields,
-    );
+  afterEach(() => {
+    jest.clearAllMocks();
   });
 
-  it('should throw BadRequestException when the product name already exists', async () => {
-    const productId = 'valid-product-id';
-    const updatedFields = {
-      price: 200,
-      name: 'Existing Product Name',
-      description: 'Updated Description',
-      photoUrl: 'http://example.com/updated-photo.jpg',
-      stockQuantity: 50,
-    };
-
-    productService.findByName.mockResolvedValue({
-      _id: 'existing-product-id',
-      name: 'Existing Product Name',
-    } as Product);
+  it('should update the product successfully if no duplicate name exists', async () => {
+    mockProductService.findByName.mockResolvedValue(null);
+    mockProductService.update.mockResolvedValue(undefined);
 
     await expect(
       useCase.execute(
-        productId,
-        updatedFields.price,
-        updatedFields.name,
-        updatedFields.description,
-        updatedFields.photoUrl,
-        updatedFields.stockQuantity,
+        'product-id',
+        100,
+        'New Product',
+        'Product description',
+        'https://example.com/image.jpg',
+        10,
       ),
-    ).rejects.toThrow(new BadRequestException('Product name already exists'));
+    ).resolves.not.toThrow();
 
-    expect(productService.findByName).toHaveBeenCalledWith(updatedFields.name);
-    expect(productService.update).not.toHaveBeenCalled();
+    expect(mockProductService.findByName).toHaveBeenCalledWith('New Product');
+    expect(mockProductService.update).toHaveBeenCalledWith('product-id', {
+      price: 100,
+      name: 'New Product',
+      description: 'Product description',
+      photoUrl: 'https://example.com/image.jpg',
+      stockQuantity: 10,
+    });
+  });
+
+  it('should throw BadRequestException if product name already exists', async () => {
+    mockProductService.findByName.mockResolvedValue({
+      _id: 'different-product-id',
+      name: 'New Product',
+    });
+
+    await expect(
+      useCase.execute(
+        'product-id',
+        100,
+        'New Product',
+        'Product description',
+        'https://example.com/image.jpg',
+        10,
+      ),
+    ).rejects.toThrow(BadRequestException);
+
+    expect(mockProductService.findByName).toHaveBeenCalledWith('New Product');
+    expect(mockProductService.update).not.toHaveBeenCalled();
+  });
+
+  it('should not throw an error if the existing product with the same name is the one being updated', async () => {
+    mockProductService.findByName.mockResolvedValue({
+      _id: 'product-id',
+      name: 'Existing Product',
+    });
+    mockProductService.update.mockResolvedValue(undefined);
+
+    await expect(
+      useCase.execute(
+        'product-id',
+        100,
+        'Existing Product',
+        'Product description',
+        'https://example.com/image.jpg',
+        10,
+      ),
+    ).resolves.not.toThrow();
+
+    expect(mockProductService.findByName).toHaveBeenCalledWith(
+      'Existing Product',
+    );
+    expect(mockProductService.update).toHaveBeenCalledWith('product-id', {
+      price: 100,
+      name: 'Existing Product',
+      description: 'Product description',
+      photoUrl: 'https://example.com/image.jpg',
+      stockQuantity: 10,
+    });
   });
 });
