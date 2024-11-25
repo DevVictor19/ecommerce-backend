@@ -60,7 +60,7 @@ export class ProductController {
 
   @Get()
   @ClientPermission()
-  findAll(
+  async findAll(
     @Query('page') page: number,
     @Query('size') size: number,
     @Query('sort') sort: SortOrder = 'DESC',
@@ -77,7 +77,7 @@ export class ProductController {
 
   @Get(':productId')
   @ClientPermission()
-  findById(
+  async findById(
     @Param('productId', ParseUUIDPipe) productId: string,
   ): Promise<ProductDto> {
     return this.findProductByIdUseCase

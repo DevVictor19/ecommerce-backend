@@ -41,7 +41,7 @@ export class OrderController {
 
   @Get()
   @AdminPermission()
-  findAllOrders(
+  async findAllOrders(
     @Query('page') page: number,
     @Query('size') size: number,
     @Query('sort') sort: SortOrder = 'DESC',
@@ -58,7 +58,7 @@ export class OrderController {
 
   @Get(':orderId')
   @ClientPermission()
-  findOrderById(
+  async findOrderById(
     @Param('orderId', ParseUUIDPipe) orderId: string,
   ): Promise<OrderDto> {
     return this.findOrderByIdUseCase.execute(orderId).then(OrderMapper.toDto);
@@ -66,7 +66,7 @@ export class OrderController {
 
   @Get('my-orders')
   @ClientPermission()
-  findAllUserOrders(
+  async findAllUserOrders(
     @Req() req: any,
     @Query('page') page: number,
     @Query('size') size: number,
@@ -86,7 +86,7 @@ export class OrderController {
 
   @Post('my-orders')
   @ClientPermission()
-  createOrder(@Req() req: any): Promise<OrderDto> {
+  async createOrder(@Req() req: any): Promise<OrderDto> {
     const user: JwtPayload = req.user;
 
     return this.createOrderUseCase.execute(user.userId).then(OrderMapper.toDto);
