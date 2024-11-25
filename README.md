@@ -24,6 +24,10 @@
 - Carts
 - Orders
 
+## Architecture Diagram
+
+<img src="/docs/archicteture-ecommerce-monolith.png" />
+
 ## Entity–relationship model
 
 <img src="./docs/erd-ecommerce-api.png" alt="ERD" />
